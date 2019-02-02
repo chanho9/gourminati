@@ -8,7 +8,7 @@ centerFrame = '''</span><span class="right"></span><br><span class="left"></span
 rightFrame = '''</span><span class="right"></span></div>'''
 latlonFrame = '''new daum.maps.LatLng('''
 
-conn = pymysql.connect(host='localhost', user='minerva', password='1q2w3e', db='gourminati', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+conn = pymysql.connect(host='127.0.0.1',port=6981, user='minerva', password='1q2w3e', db='gourminati', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
  
 try:
     with conn.cursor() as cursor:
@@ -29,8 +29,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def template_test():
+    print("!!!")
     return render_template('map.html',  title = db_title, contents = db_contents, adress = db_adress )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
 
