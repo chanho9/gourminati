@@ -9,17 +9,6 @@ centerFrame = '''</span><span class="right"></span><br><span class="left"></span
 rightFrame = '''</span><span class="right"></span></div>'''
 latlonFrame = '''new daum.maps.LatLng('''
 
-app = Flask(__name__, **kwargs)
-
-try:
-    app.config.from_object('config')
-except ImportError:
-    app.logger.error(
-        "Failed to import config"
-    )
-    sys.exit(1)
-
-
 conn = pymysql.connect(host='127.0.0.1',port=6981, user='minerva', password='1q2w3e', db='gourminati', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
  
 try:
@@ -37,6 +26,14 @@ finally:
 
 
 app = Flask(__name__)
+
+try:
+    app.config.from_object('config')
+except ImportError:
+    app.logger.error(
+        "Failed to import config"
+    )
+    sys.exit(1)
 
 
 @app.route("/")
