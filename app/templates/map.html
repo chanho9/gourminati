@@ -29,11 +29,10 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
 
-// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
 var title = {{title|tojson}};
 var contents = {{ contents|tojson }};
 var adress = {{ adress|tojson }};
-
 
 //https://code.i-harness.com/ko-kr/q/af4b0e
 for (var i = 0; i < title.length; i++){

@@ -28,12 +28,15 @@ def create_app(config_class=Config):
     app = Flask(__name__)
 
     try:
-        app.config.from_object('config')
+        app.config.from_object('config.Config')
     except ImportError:
         app.logger.error(
             "Failed to import config"
         )
         sys.exit(1)
+
+    from app.db import init_app
+    init_app(app)
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)

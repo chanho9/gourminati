@@ -24,9 +24,13 @@ $ virtualenv venv
 $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 (venv) $ export FLASK_APP=gourminati.py
+(venv) $ flask init-db
 (venv) $ flask run
 
 /* If you want to stop server, press ctrl+c. */
 
 (venv) $ deactivate
 ```
+
+## Add a New Restaurant
+Add a new restaurant to the db.xlsx file in the 'guide' directory and run the init-db command
