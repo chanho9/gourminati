@@ -23,7 +23,8 @@ $ virtualenv venv
 ```
 $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
-(venv) $ python3 gourminati.py
+(venv) $ export FLASK_APP=gourminati.py
+(venv) $ flask run
 
 /* If you want to stop server, press ctrl+c. */
 
