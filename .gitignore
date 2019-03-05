@@ -10,8 +10,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
-downloads/
+dist/ downloads/
 eggs/
 .eggs/
 lib/
@@ -188,3 +187,6 @@ modules.xml
 *.ipr
 
 # End of https://www.gitignore.io/api/pycharm+all
+
+# Database
+gourminati.db
