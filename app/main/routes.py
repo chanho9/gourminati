@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import render_template
 
 from app.main import bp
@@ -7,21 +9,20 @@ from app.db import get_db
 @bp.route('/', methods=['GET'])
 @bp.route('/index', methods=['GET'])
 def index():
-    print("!!!")
-
+    # 모든 식당 정보 읽기
     db = get_db()
-    restaurants = db.execute(
+    rows = db.execute(
         'SELECT name, type, address'
         ' FROM restaurant'
     ).fetchall()
 
-    title = []
-    contents = []
-    address = []
-    for restaurant in restaurants:
-        title.append(restaurant[0])
-        contents.append(restaurant[1])
-        address.append(restaurant[2])
+    # SQLite rows 객체의 값을 JSON 변환가능한 데이터로 변환
+    restaurants = []
+    for row in rows:
+        restaurants.append({
+            'title': row[0],
+            'content': row[1],
+            'address': row[2],
+        })
 
-    return render_template('map.html', title=title, contents=contents, adress=address)
-
+    return render_template('map.html', restaurants=restaurants)

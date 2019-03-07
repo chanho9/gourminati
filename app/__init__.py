@@ -1,43 +1,29 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask
 from config import Config
 
 import sys
 
-leftFrame = '''<div class ="label"><span class="left"></span><span class="center">'''
-centerFrame = '''</span><span class="right"></span><br><span class="left"></span><span class="center">'''
-rightFrame = '''</span><span class="right"></span></div>'''
-latlonFrame = '''new daum.maps.LatLng('''
 
-# conn = pymysql.connect(host='127.0.0.1',port=6981, user='minerva', password='1q2w3e', db='gourminati', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
-#
-# try:
-#     with conn.cursor() as cursor:
-#         sql = "select * from gourminati"
-#         cursor.execute(sql);
-#         result = cursor.fetchall();
-#         df = pd.DataFrame(result);
-#         db_title = df["title"].tolist();
-#         db_contents = df["contents"].tolist();
-#         db_adress = df["adress"].tolist();
-#
-# finally:
-#     conn.close()
-
-
-def create_app(config_class=Config):
+def create_app():
+    # Flask app 생성
     app = Flask(__name__)
 
+    # Configure 불러오기
     try:
-        app.config.from_object('config.Config')
+        app.config.from_object(Config)
     except ImportError:
         app.logger.error(
             "Failed to import config"
         )
         sys.exit(1)
 
+    # DB 사용 준비
     from app.db import init_app
     init_app(app)
 
+    # Main 페이지 라우팅 등록
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
