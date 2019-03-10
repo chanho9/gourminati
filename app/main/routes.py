@@ -25,4 +25,4 @@ def index():
             'address': row[2],
         })
 
-    return render_template('map.html', restaurants=restaurants)
+    return render_template('index.html', restaurants=restaurants, title="비밀의 맛 결사단")

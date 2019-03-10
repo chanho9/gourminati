@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<title>
+    {% block title %}
+        {% if title %}
+            {{ title }}
+        {% else %}
+            타이틀을 입력하세요
+        {% endif %}
+    {% endblock %}
+</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+<header>
+    {% block header %}{% endblock %}
+</header>
+<body>
+    {% block content %}{% endblock %}
+</body>
