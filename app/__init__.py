@@ -7,10 +7,6 @@ import sys
 
 
 def create_app():
-    # 한글 인코딩 문제 해결
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
-
     # Flask app 생성
     app = Flask(__name__)
 
