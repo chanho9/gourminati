@@ -1,0 +1,14 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+}
+.content
+{
+    padding: 0;
+}
+.nav a
+{
+    float: none;
+    width: 100%;
+}

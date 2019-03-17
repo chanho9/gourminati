@@ -1,10 +1,16 @@
 ﻿{% extends 'base.html' %}
 
-{% block header %}
+{% block head %}
+    {{ super() }}
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/map.css') }}">
 {% endblock %}
+
+{% block header %}
+    <h1>Gourminati</h1>
+    <p>비밀의 맛 결사단</p>
+{% endblock%}
 
 {% block content %}
     <div id="map" style="width:100%;height:100%;"></div>
