@@ -21,7 +21,14 @@
 
     <!-- navigator 영역 -->
     <div class="nav">
-        <a href="#">Home</a>
+        <a href="{{ url_for('main.index') }}">Home</a>
+        {% if g.user %}
+            <span>{{ g.user['username'] }}</span>
+            <a href="#">Log Out</a>
+        {% else %}
+            <a href="#">Register</a>
+            <a href="#">Log In</a>
+        {% endif %}
     </div>
 
     <!-- main content 영역 -->
