@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template
+from flask import render_template, g
 
 from app.main import bp
 from app.db import get_db

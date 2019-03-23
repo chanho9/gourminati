@@ -1,17 +1,44 @@
 <!DOCTYPE html>
-<title>
-    {% block title %}
-        {% if title %}
-            {{ title }}
-        {% else %}
-            타이틀을 입력하세요
-        {% endif %}
+<html>
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+    <link rel="stylesheet" media="(max-width: 480px)" href="{{ url_for('static', filename='style/base_mobile.css') }}">
+    <title>
+        {% block title %}
+            {% if title %}
+                {{ title }}
+            {% else %}
+                타이틀을 입력하세요
+            {% endif %}
+        {% endblock %}
+    </title>
     {% endblock %}
-</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
-<header>
-    {% block header %}{% endblock %}
-</header>
+</head>
 <body>
-    {% block content %}{% endblock %}
+    <!-- header 영역 -->
+    <div class="header">{% block header %}{% endblock %}</div>
+
+    <!-- navigator 영역 -->
+    <div class="nav">
+        <a href="{{ url_for('main.index') }}">Home</a>
+        {% if g.user %}
+            <span>{{ g.user['username'] }}</span>
+            <a href="#">Log Out</a>
+        {% else %}
+            <a href="#">Register</a>
+            <a href="#">Log In</a>
+        {% endif %}
+    </div>
+
+    <!-- main content 영역 -->
+    <div class="content">{% block content %}{% endblock %}</div>
+
+    <!-- footer 영역 -->
+    <div class="footer">
+        <p class="cp-text">
+            © Copyright 2019 phdpark. All rights reserved.
+        </p>
+    </div>
 </body>
+</html>
