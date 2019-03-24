@@ -26,4 +26,4 @@ def index():
         })
 
     api_Key=current_app.config['KAKAO_API_KEY']
-    return render_template('index.html', restaurants=restaurants, title=u"비밀의 맛 결사단", api_Key=api_Key)
+    return render_template('application.html', restaurants=restaurants, title=u"비밀의 맛 결사단", api_Key=api_Key)
