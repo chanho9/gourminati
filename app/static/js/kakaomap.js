@@ -1,5 +1,5 @@
 function map(restaurants) {
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    var mapContainer = document.getElementById('kakaomap'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.29329, 126.974805), // 지도의 중심좌표
             level: 6 // 지도의 확대 레벨
@@ -25,13 +25,13 @@ function map(restaurants) {
             if (status === daum.maps.services.Status.OK) {
                 //counter = adress.indexOf(result[0].address_name, 0); //완전일치가 어려움으로 제외
                 tempdata.content =
-                    '<div class ="label">' +
-                    '<span class="left"></span>' +
-                    '<span class="center">' + restaurants[counter]['title'] + '</span>' +
-                    '<span class="right"></span><br>' +
-                    '<span class="left"></span>' +
-                    '<span class="center">' + restaurants[counter]['content'] + '</span>' +
-                    '<span class="right"></span>' +
+                    '<div class ="kakaomaplabel">' +
+                    '<span class="kakaomapleft"></span>' +
+                    '<span class="kakaomapcenter">' + restaurants[counter]['title'] + '</span>' +
+                    '<span class="kakaomapright"></span><br>' +
+                    '<span class="kakaomapleft"></span>' +
+                    '<span class="kakaomapcenter">' + restaurants[counter]['content'] + '</span>' +
+                    '<span class="kakaomapright"></span>' +
                     '</div>'
                 tempdata.latlng = new daum.maps.LatLng(result[0].y ,result[0].x)
 
