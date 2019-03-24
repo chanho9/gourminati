@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template, g
+from flask import current_app, render_template, g
 
 from app.main import bp
 from app.db import get_db
@@ -25,4 +25,5 @@ def index():
             'address': row[2],
         })
 
-    return render_template('index.html', restaurants=restaurants, title=u"비밀의 맛 결사단")
+    api_Key=current_app.config['KAKAO_API_KEY']
+    return render_template('index.html', restaurants=restaurants, title=u"비밀의 맛 결사단", api_Key=api_Key)
