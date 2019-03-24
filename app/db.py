@@ -8,13 +8,13 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 
 
-def set_data(name, type, address):
-    print(name, type, address)
+def set_data(name, type, address, parking, cost):
+    print(name, type, address, parking, cost)
     db = get_db()
     db.execute(
-        'INSERT INTO restaurant (name, type, address)'
-        ' VALUES (?, ?, ?)',
-        (name, type, address)
+        'INSERT INTO restaurant (name, type, address, parking, cost)'
+        ' VALUES (?, ?, ?, ?, ?)',
+        (name, type, address, parking, cost)
     )
     db.commit()
 
@@ -60,8 +60,8 @@ def init_db():
     row = 1
     while row < sheet.nrows:
         row_value = sheet.row_values(row)
-        # set_data('식당이름', '식당종류', '주소')
-        set_data(row_value[1], row_value[2], row_value[3])
+        # set_data('식당이름', '식당종류', '주소', '주차장', '비용')
+        set_data(row_value[1], row_value[2], row_value[3], row_value[4], row_value[5])
         row += 1
 
 

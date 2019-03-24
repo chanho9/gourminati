@@ -7,5 +7,8 @@ CREATE TABLE restaurant (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     type TEXT NOT NULL,
-    address TEXT UNIQUE NOT NULL
+    address TEXT UNIQUE NOT NULL,
+    parking TEXT NOT NULL, 
+    cost TEXT NOT NULL
+
 );
