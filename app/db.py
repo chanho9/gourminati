@@ -51,7 +51,10 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
-    wb = xlrd.open_workbook('guide/db.xlsx')
+    try:
+        wb = xlrd.open_workbook(current_app.config['DATA_PATH'])
+    except IOError:
+        wb = xlrd.open_workbook('guide/db.xlsx')
     sheet = wb.sheet_by_index(0)
 
     row = 1
