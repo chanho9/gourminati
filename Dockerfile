@@ -5,12 +5,11 @@ COPY . /app
 WORKDIR /app
 
 RUN mkdir -p /mnt/data
-ENV GOURMINATI_DATA_PATH=mnt/data/gourminati.xlsx
+ENV GOURMINATI_DATA_PATH=/mnt/data/gourminati.xlsx
 ENV GOURMINATI_KAKAO_API_KEY="Enter API key"
 
 RUN pip3 install -r requirements.txt
 ENV FLASK_APP=gourminati.py
-RUN flask init-db
-CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
+CMD flask init-db && flask run --host=0.0.0.0 --port 80
 
 EXPOSE 80
