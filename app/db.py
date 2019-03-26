@@ -53,7 +53,7 @@ def init_db():
 
     try:
         wb = xlrd.open_workbook(current_app.config['DATA_PATH'])
-    except (IOError, TypeError):
+    except (IOError, TypeError, AttributeError):
         wb = xlrd.open_workbook('guide/db.xlsx')
     sheet = wb.sheet_by_index(0)
 
