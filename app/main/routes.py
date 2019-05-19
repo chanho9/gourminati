@@ -42,7 +42,7 @@ def dbFilter(rows, parking=1, cost=2):
 def index():
     # db업데이트 요구 확인
     try:
-        spell=int(request.form['spell'])
+        spell=str(request.form['spell'])
     except (ValueError, KeyError, TypeError):
         spell='silence'
         print('맛집 문이 열렸습니다.')
