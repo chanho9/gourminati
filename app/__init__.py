@@ -7,6 +7,7 @@ import sys
 
 
 def create_app():
+    print('hi')
     # Flask app 생성
     app = Flask(__name__)
 
@@ -20,6 +21,7 @@ def create_app():
         sys.exit(1)
 
     # DB 사용 준비
+    print('db will be ready')
     from app.db import init_app
     init_app(app)
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,13 +59,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link waves-effect"
               data-toggle="modal" data-target="#signInModal">
-                <i class="fas fa-sign-in-alt"></i>Sign-In
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link waves-effect">
-                <i class="fas fa-user"></i>홍길동
+                <i class="fas fa-sign-in-alt"></i>update DB
               </a>
             </li>
           </ul>
@@ -222,21 +216,25 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
 
-          <!-- Default form login -->
-          <form class="text-center border border-light p-5">
+	<form action="/" method="post"> 
+   	  <div class="modal-body">
 
-              <p class="h4 mb-4">Sign in</p>
+            <!-- Default form login -->
+            <form class="text-center border border-light p-5">
 
-              <!-- Password -->
-              <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                <p class="h4 mb-4">Sign in</p>
+
+                <!-- Password -->
+                <input type="password" name="spell" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
 
 
-              <!-- Sign in button -->
-              <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                <!-- Sign in button -->
+                <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
-          </form>
+            </form>
+        </form>
+
           <!-- Default form login -->
 
         </div>

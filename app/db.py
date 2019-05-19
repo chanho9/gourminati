@@ -45,15 +45,17 @@ def close_db(e=None):
 
 
 def init_db():
-    """Clear existing data and create new tables."""
+    print('init db')
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
     try:
+        print('try to get db path')
         wb = xlrd.open_workbook(current_app.config['DATA_PATH'])
     except (IOError, TypeError, AttributeError):
+        print('fail to get db')
         wb = xlrd.open_workbook('guide/db.xlsx')
     sheet = wb.sheet_by_index(0)
 

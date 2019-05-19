@@ -3,7 +3,7 @@
 from flask import current_app, render_template, g, request
 
 from app.main import bp
-from app.db import get_db
+from app.db import get_db, init_db
 
 def dbFilter(rows, parking=1, cost=2):
     
@@ -40,7 +40,19 @@ def dbFilter(rows, parking=1, cost=2):
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET'])
 def index():
+    # db업데이트 요구 확인
+    try:
+        spell=int(request.form['spell'])
+    except (ValueError, KeyError, TypeError):
+        spell='silence'
+        print('맛집 문이 열렸습니다.')
+
+    if (spell=='Alohomora' or spell=='alohomora'):
+        init_db()
+
+    spell='silence'
     # 모든 식당 정보 읽기
+    print('get db now...')
     db = get_db()
     rows = db.execute(
         'SELECT name, type, address, parking, cost'
