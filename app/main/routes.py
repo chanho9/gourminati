@@ -61,7 +61,7 @@ def index():
     print('get db now...')
     db = get_db()
     rows = db.execute(
-        'SELECT name, type, address, parking, cost'
+        'SELECT name, type, address, parking, cost, room'
         ' FROM restaurant'
     ).fetchall()
 

@@ -12,7 +12,7 @@ def set_data(name, type, address, parking, cost, room):
     print(name, type, address, parking, cost, room)
     db = get_db()
     db.execute(
-        'INSERT INTO restaurant (name, type, address, parking, cost room)'
+        'INSERT INTO restaurant (name, type, address, parking, cost, room)'
         ' VALUES (?, ?, ?, ?, ?, ?)',
         (name, type, address, parking, cost, room)
     )
