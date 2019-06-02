@@ -9,6 +9,7 @@ CREATE TABLE restaurant (
     type TEXT NOT NULL,
     address TEXT UNIQUE NOT NULL,
     parking TEXT NOT NULL, 
-    cost TEXT NOT NULL
+    cost TEXT NOT NULL,
+    room TEXT NOT NULL
 
 );
