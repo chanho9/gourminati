@@ -32,23 +32,39 @@ function map(restaurants) {
                     '<span class="kakaomapleft"></span>' +
                     '<span class="kakaomapcenter">' + restaurants[counter]['content'] + '</span>' +
                     '<span class="kakaomapright"></span>' +
-                    '</div>'
+                    '</div>';
+
                 tempdata.latlng = new daum.maps.LatLng(result[0].y ,result[0].x)
 
+		//마커 생성
                 var marker = new daum.maps.Marker({
                     map: map, // 마커를 표시할 지도
-                    position: tempdata.latlng // 마커의 위치
+                    position: tempdata.latlng, // 마커의 위치
                 });
+		marker.setTitle(restaurants[counter]['id']);
 
+		// 오버레이 생성
                 var customOverlay = new daum.maps.CustomOverlay({
                     position: tempdata.latlng,
                     content: tempdata.content
                 });
 
-                customOverlay.setMap(map);
+		customOverlay.setMap(map);
+
+		//마커의 클릭 이벤트
+ 		kakao.maps.event.addListener(marker, 'click', function() {
+		    //console.debug(marker.getTitle());
+
+		    var link = "http://localhost:5000/carrier_pigeon/"+marker.getTitle();
+		    $("#Signaller .modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+link+'"></iframe>');
+                    $("#gestbook-modaltitle").text(restaurants[counter]['title'])
+		    $("#Signaller").modal("show"); 
+
+      		  });
+
             }
 
-            counter++;
+            //counter++;
         });
     }
 
@@ -78,3 +94,4 @@ function map(restaurants) {
         map.panTo(locPosition);
     });
 }
+

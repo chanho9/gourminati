@@ -3,18 +3,22 @@
 import sqlite3
 import click
 import xlrd
+from os import path
 
 from flask import current_app, g
 from flask.cli import with_appcontext
 
+ROOT = path.dirname(path.abspath(__file__))
+BASE_DIR = path.dirname(ROOT)
 
-def set_data(name, type, address, parking, cost, room):
+
+def set_data(id, name, type, address, parking, cost, room):
     print(name, type, address, parking, cost, room)
     db = get_db()
     db.execute(
-        'INSERT INTO restaurant (name, type, address, parking, cost, room)'
-        ' VALUES (?, ?, ?, ?, ?, ?)',
-        (name, type, address, parking, cost, room)
+        'INSERT INTO restaurant (id, name, type, address, parking, cost, room)'
+        ' VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (id, name, type, address, parking, cost, room)
     )
     db.commit()
 
@@ -62,9 +66,52 @@ def init_db():
     row = 1
     while row < sheet.nrows:
         row_value = sheet.row_values(row)
-        # set_data('식당이름', '식당종류', '주소', '주차장', '비용', '룸')
-        set_data(row_value[1], row_value[2], row_value[3], row_value[4], row_value[5], row_value[6])
+        # set_data('식당번호','식당이름', '식당종류', '주소', '주차장', '비용', '룸')
+        set_data(row_value[0], row_value[1], row_value[2], row_value[3], row_value[4], row_value[5], row_value[6])
         row += 1
+
+
+    print("BASE ROOT : ", BASE_DIR)
+    pigeonBox = BASE_DIR+"/pigeon.db"
+    if path.exists(pigeonBox):
+        print("we have pigeon box")
+    else:
+        print("make pigeon box now..")
+
+    conn = sqlite3.connect(BASE_DIR+"/pigeon.db")
+    print(BASE_DIR+"/pigeon.db")
+    c = conn.cursor()
+    
+    end = sheet.row_values(sheet.nrows-1)[0]
+    print(end)
+    i = 0
+    while i!=(end+1):
+        c.execute("CREATE TABLE IF NOT EXISTS pigeon" +str(i)+"( id INTEGER PRIMARY KEY, name TEXT, content TEXT)")
+        conn.commit()
+        print("CREATE TABLE IF NOT EXISTS " +str(i)+" (id INTEGER PRIMARY KEY, name TEXT, content TEXT)")
+        i+=1
+    conn.close()
+
+#### 댓글창 DB 부분
+#### 댓글창 DB 업데이트 추가
+
+
+def create_post(Table, name, content):
+    con = sqlite3.connect(path.join(BASE_DIR, 'pigeon.db')) ## 피존 DB 위치 위로 올리기
+    cur = con.cursor()
+    cur.execute('insert into ' +Table+ ' (name, content) values(?, ?)', (name, content))
+    con.commit()
+    con.close()
+
+def get_posts(Table):
+    con = sqlite3.connect(path.join(BASE_DIR, 'pigeon.db'))
+    cur = con.cursor()
+    cur.execute('select * from '+Table)
+    posts = cur.fetchall()
+    #posts_rev = posts.reverse()
+    return posts[::-1]
+
+#### 댓글창 DB 부분
 
 
 @click.command('init-db')

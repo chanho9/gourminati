@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS restaurant;
 
 CREATE TABLE restaurant (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     type TEXT NOT NULL,
     address TEXT UNIQUE NOT NULL,

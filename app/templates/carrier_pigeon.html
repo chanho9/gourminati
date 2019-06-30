@@ -1,0 +1,9 @@
+<form action='/carrier_pigeon/{{pigeon_num}}' method = 'post'>
+        <input placeholder = 'Name' name = 'name'>
+        <input placeholder = 'post content' name = 'post'>
+        <input type='submit' value = 'Sumit'>
+</form>
+
+{% for post in posts %}
+<div>{{ post[1] + ': ' + post[2] }}</div>
+{% endfor %}
