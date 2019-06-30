@@ -55,7 +55,7 @@ function map(restaurants) {
  		kakao.maps.event.addListener(marker, 'click', function() {
 		    //console.debug(marker.getTitle());
 
-		    var link = "http://localhost:5000/carrier_pigeon/"+marker.getTitle();
+		    var link = "/carrier_pigeon/"+marker.getTitle();
 		    $("#Signaller .modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+link+'"></iframe>');
                     $("#gestbook-modaltitle").text(restaurants[counter]['title'])
 		    $("#Signaller").modal("show"); 
